@@ -1,0 +1,298 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Add Repository"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/psenger/VirtualMachineImages/CentosHadoopVagrantCluster"
+	],
+	"file_history":
+	[
+		"/Users/psenger/VirtualMachineImages/CentosHadoopVagrantCluster/puppet/base­hadoop.pp",
+		"/Users/psenger/VirtualMachineImages/CentosHadoopVagrantCluster/.gitignore",
+		"/Users/psenger/VirtualMachineImages/CentosImage/README.md",
+		"/Users/psenger/VirtualMachineImages/CentosImage/.gitignore",
+		"/Users/psenger/VirtualMachineImages/CentosImage/scripts/eth0.sh",
+		"/Users/psenger/VirtualMachineImages/CentosImage/Vagrantfile",
+		"/Users/psenger/VirtualMachineImages/CentosImage/puppet/base­hadoop.pp",
+		"/Users/psenger/VirtualMachineImages/CentosImage/puppet/java.pp",
+		"/Users/psenger/VirtualMachineImages/CentosImage/puppet/webhead.pp",
+		"/Users/psenger/VirtualMachineImages/CentosImage/puppet/modules/java/manifests/init.pp",
+		"/Users/psenger/Downloads/puppetlabs-java-1.1.1 2/manifests/init.pp",
+		"/Users/psenger/Downloads/puppetlabs-java-1.1.1/manifests/init.pp",
+		"/Users/psenger/VirtualMachineImages/Vagrantfile",
+		"/Users/psenger/CentOS-7/metadata.json",
+		"/Users/psenger/VirtualMachineImages/manifests/webhead.pp",
+		"/Users/psenger/CentOS-7/Vagrantfile",
+		"/Users/psenger/VirtualMachineImages/sync/webhead.sh",
+		"/Users/psenger/Documents/Clients/SAS/Vagrant/manifests/default-synapse.pp",
+		"/Users/psenger/VirtualMachineImages/manifests/default.pp",
+		"/Users/psenger/Documents/Clients/SAS/Vagrant/Vagrantfile",
+		"/Users/psenger/Desktop/default.pp",
+		"/Users/psenger/Library/Application Support/Sublime Text 3/Packages/SFTP/SFTP.sublime-settings",
+		"/Users/psenger/Library/Application Support/Sublime Text 3/Packages/User/SFTP.sublime-settings",
+		"/Users/psenger/Downloads/fo..html/index.html",
+		"/Users/psenger/Downloads/fo..html/assets/header.jsonp",
+		"/Users/psenger/Downloads/fo..html/assets/F0116EAB-5A52-45DE-B553-841EB01EA644/F0116EAB-5A52-45DE-B553-841EB01EA644.jsonp",
+		"/Users/psenger/Downloads/fo..html/assets/header.json",
+		"/Users/psenger/Desktop/Foo.pptx",
+		"/Users/psenger/Downloads/Filters.patch",
+		"/Users/psenger/Documents/Clients/IBM Weekly Backup/psenger/MSS_Development/Projects/trunk/SOC_Console/src/net/iss/mss/acegisecurity/userdetails/memory/MssInMemoryDaoImpl.java",
+		"/Users/psenger/Documents/Clients/IBM Weekly Backup/psenger/MSS_Development/Projects/trunk/SOC_Console/WEB-INF/acegi.xml",
+		"/Users/psenger/Documents/Clients/IBM Weekly Backup/psenger/MSS_Development/Projects/trunk/Portal/src/net/iss/mss/authentication/AuthenticationResult.java",
+		"/Users/psenger/Documents/Clients/IBM Weekly Backup/psenger/MSS_Development/Projects/trunk/Portal/src/net/iss/mss/authentication/AceAuth.java",
+		"/Users/psenger/Documents/Clients/IBM Weekly Backup/psenger/MSS_Development/Projects/trunk/Portal/src/net/iss/mss/authentication/Authentication.java",
+		"/Users/psenger/Documents/Dev/IdeaProjects/synapse-jsonp/src/main/webapp/css/vendor/bootstrap.css.map",
+		"/Users/psenger/Documents/Clients/IBM Weekly Backup/psenger/MSS_Development/Projects/trunk/Services/conf/Services.xml",
+		"/Users/psenger/Downloads/spring-security-3.2.4.RELEASE/samples/contacts-xml/src/main/webapp/WEB-INF/web.xml",
+		"/Users/psenger/Downloads/spring-security-3.2.4.RELEASE/samples/gae-xml/src/main/webapp/WEB-INF/web.xml",
+		"/Users/psenger/Downloads/spring-security-3.2.4.RELEASE/samples/insecure/pom.xml",
+		"/Users/psenger/Downloads/spring-security-3.2.4.RELEASE/samples/insecure/src/main/webapp/index.jsp",
+		"/Users/psenger/Downloads/spring-security-3.2.4.RELEASE/samples/insecure/build.gradle",
+		"/Users/psenger/Desktop/synapse-jsonp/src/main/java/com/sas/apps/synapse/services/CustomerService.java",
+		"/Users/psenger/Desktop/synapse-jsonp/src/main/webapp/WEB-INF/service-beans.xml",
+		"/Users/psenger/Desktop/synapse-jsonp/src/main/java/com/sas/apps/synapse/services/impl/StaffServiceImpl.java",
+		"/Users/psenger/Desktop/synapse-jsonp/src/main/java/com/sas/apps/synapse/services/StaffService.java",
+		"/Users/psenger/Desktop/synapse-jsonp/src/main/java/com/sas/apps/synapse/services/entities/Customer.java",
+		"/Users/psenger/Desktop/synapse-jsonp/src/main/java/com/sas/apps/synapse/services/entities/AbstractServiceBaseEntity.java",
+		"/Users/psenger/Desktop/synapse-jsonp/src/main/java/com/sas/apps/synapse/services/entities/Roles.java",
+		"/Users/psenger/Desktop/synapse-jsonp/src/main/java/com/sas/apps/synapse/services/utils/ServiceBaseEntity.java",
+		"/Users/psenger/Desktop/synapse-jsonp/src/main/java/com/sas/apps/synapse/services/utils/ServiceListResult.java",
+		"/Users/psenger/Desktop/synapse-jsonp/src/main/java/com/sas/apps/synapse/services/utils/ServiceListError.java",
+		"/Users/psenger/Desktop/synapse-jsonp/src/main/java/com/sas/apps/synapse/services/utils/LinkableEntity.java",
+		"/Users/psenger/Documents/Clients/SAS/synapse-web/src/synapseProperties.properties",
+		"/Users/psenger/Documents/Clients/SAS/synapse-web/test/src/synapseProperties_junit_synapse.properties",
+		"/Users/psenger/Documents/Dev/IdeaProjects/synapse-jsonp/target/Synapse-2.0-Synapse-2.0.8-bd85c 2/META-INF/MANIFEST.MF",
+		"/Users/psenger/Documents/Dev/IdeaProjects/synapse-jsonp/target/Synapse-2.0-Synapse-bd85c56 2/WEB-INF/classes/application.properties",
+		"/Users/psenger/Documents/Dev/IdeaProjects/synapse-jsonp/target/Synapse-2.0-Synapse-bd85c56 2/META-INF/MANIFEST.MF",
+		"/Users/psenger/Documents/Dev/IdeaProjects/synapse-jsonp/target/Synapse-2.0-Synapse-bd85c56/WEB-INF/classes/application.properties",
+		"/Users/psenger/Desktop/BP/BP/config.rb",
+		"/Users/psenger/Desktop/deleteme",
+		"/Users/psenger/Documents/Software/CodeKit2 License.txt",
+		"/Users/psenger/Desktop/Brew Install Results.txt",
+		"/Users/psenger/Documents/Dev/IdeaProjects/bootstrap-sass/bootstrap-sass.gemspec",
+		"/Users/psenger/Library/Application Support/Sublime Text 3/Packages/User/codeivate-st.sublime-settings",
+		"/Users/psenger/Library/Application Support/Sublime Text 3/Packages/codeivate-st/codeivate-st.sublime-settings",
+		"/Users/psenger/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/psenger/Library/Caches/com.binarynights.ForkLift2/#4/About.mustache",
+		"/Users/psenger/Desktop/vag.txt",
+		"/Users/psenger/Downloads/jsonwrapper/JSON/Test-JSON.php",
+		"/Users/psenger/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/09DAF922-D097-4223-B34C-CF82621A2238/profile/SAS-SBL-on.xml",
+		"/Users/psenger/Documents/Clients/Tadpoleswimschool/config.rb",
+		"/Users/psenger/Documents/Applications/ng-book/code/28_chromeapps/custom/js/app.js",
+		"/Users/psenger/Documents/Applications/ng-book/code/28_chromeapps/custom/tab.html",
+		"/Users/psenger/Documents/Applications/ng-book/code/11_routing/app.js",
+		"/Users/psenger/Documents/Applications/ng-book/code/11_routing/index.html",
+		"/Users/psenger/Documents/Clients/Tadpoleswimschool/css/anime.css",
+		"/Users/psenger/Documents/Clients/Tadpoleswimschool/css/style.css",
+		"/Users/psenger/Downloads/codeguy-Slim-4906b77/index.php",
+		"/Volumes/PROJ/synapse-jsonp/src/main/webapp/WEB-INF/pages/staff.jsp",
+		"/Volumes/PROJ/synapse-jsonp/src/main/java/com/sas/apps/synapse/services/utils/ServiceListResult.java",
+		"/Applications/MAMP/conf/php5.3.28/php.ini",
+		"/Users/psenger/Dropbox/2013 USA Tax documents/Readme.txt",
+		"/Users/psenger/Desktop/Discussion with Tony.md"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/psenger/Downloads/spring-security-3.2.4.RELEASE/samples/contacts-xml",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"sas",
+			"^-",
+			"AbstractUserDetailsAuthenticationProvider",
+			"springSecurityFilterChain",
+			"LinkableEntity",
+			"IMG",
+			"Carolyn Steven and August",
+			"graphDatabaseService",
+			"\" .",
+			"../classes/",
+			"\"",
+			"+",
+			",",
+			"\"",
+			" ",
+			"parseURL",
+			"printIndex",
+			"\\t\\t",
+			"  "
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"",
+			"'",
+			".",
+			"'",
+			"",
+			"\\t"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"project": "CentosHadoopVagrantCluster.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"applicationcontext-security.xml",
+				"spring-security-3.2.4.RELEASE/samples/contacts-xml/src/main/resources/applicationContext-security.xml"
+			],
+			[
+				"linkableentity",
+				"synapse-jsonp/src/main/java/com/sas/apps/synapse/services/utils/LinkableEntity.java"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 27.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 414.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

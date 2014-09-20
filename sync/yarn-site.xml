@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+		<!-- ###################################################
+		     Configurations for ResourceManager and NodeManager:
+			 ################################################### -->
+
+		<!-- Enable ACLs? Defaults to false. -->
+		<property>
+			<name>yarn.acl.enable</name>
+			<value>false</value>
+		</property>
+
+		<!-- ACL to set admins on the cluster. ACLs are of for comma-separated-usersspacecomma-separated-groups. Defaults to special value of * which means anyone. Special value of just space means no one has access. -->
+		<property>
+			<name>yarn.admin.acl</name>
+			<value>*</value>
+		</property>
+
+		<!-- Configuration to enable or disable log aggregation -->
+		<property>
+			<name>yarn.log-aggregation-enable</name>
+			<value>false</value>
+		</property>
+
+		<!-- ###################################################
+		     Configurations for ResourceManager:
+			 ################################################### -->
+
+	   	<!-- ResourceManager host:port for clients to submit jobs.
+		 	 host:port If set, overrides the hostname set in yarn.resourcemanager.hostname -->
+	    <!--
+	    <property>
+	        <name>yarn.resourcemanager.address</name>
+	        <value></value>
+	    </property>
+	    -->
+
+	    <!-- ResourceManager host:port for ApplicationMasters to talk to Scheduler to obtain resources.
+	         host:port If set, overrides the hostname set in yarn.resourcemanager.hostname. -->
+	    <!--
+	    <property>
+	        <name>yarn.resourcemanager.scheduler.address</name>
+	        <value></value>
+	    </property>
+	    -->
+
+	    <!-- ResourceManager host:port for NodeManagers.
+	         host:port If set, overrides the hostname set in yarn.resourcemanager.hostname. -->
+	    <!--
+	    <property>
+	        <name>yarn.resourcemanager.resource-tracker.address</name>
+	        <value></value>
+	    </property>
+	    -->
+
+	    <!-- ResourceManager host:port for administrative commands.
+	         host:port If set, overrides the hostname set in yarn.resourcemanager.hostname. -->
+	    <!--
+	    <property>
+	        <name>yarn.resourcemanager.admin.address</name>
+	        <value></value>
+	    </property>
+	    -->
+
+	    <!-- ResourceManager web-ui host:port.
+	         host:port If set, overrides the hostname set in yarn.resourcemanager.hostname. -->
+	    <!--
+	    <property>
+	        <name>yarn.resourcemanager.webapp.address</name>
+	        <value></value>
+	    </property>
+	    -->
+
+	    <!-- ResourceManager host.
+	         host Single hostname that can be set in place of setting all yarn.resourcemanager*address resources. Results
+	         in default ports for ResourceManager components. -->
+	    <property>
+	        <name>yarn.resourcemanager.hostname</name>
+	        <value>jobtrackernode</value>
+	    </property>
+
+	    <!-- ResourceManager Scheduler class.
+	         CapacityScheduler (recommended), FairScheduler (also recommended), or FifoScheduler -->
+	    <property>
+	        <name>yarn.resourcemanager.scheduler.class</name>
+	        <value>CapacityScheduler</value>
+	    </property>
+
+	    <!-- Minimum limit of memory to allocate to each container request at the Resource Manager. In MBs -->
+	    <property>
+	        <name>yarn.scheduler.minimum-allocation-mb</name>
+	        <value>1024</value>
+	    </property>
+
+	    <!-- Maximum limit of memory to allocate to each container request at the Resource Manager. In MBs -->
+	    <property>
+	        <name>yarn.scheduler.maximum-allocation-mb</name>
+	        <value>8192</value>
+	    </property>
+
+	    <!-- List of permitted NodeManagers. -->
+	    <property>
+	        <name>yarn.resourcemanager.nodes.include-path</name>
+	        <value>namenode</value>
+	    </property>
+
+	    <!-- List of excluded NodeManagers. -->
+		<!--
+	    <property>
+	        <name>yarn.resourcemanager.nodes.exclude-path</name>
+	        <value></value>
+	    </property>
+		-->
+
+		<!-- ###################################################
+		     Configurations for NodeManager:
+			 ################################################### -->
+	   <!--
+	    Resource i.e. available physical memory, in MB, for given NodeManager
+	    Defines total available resources on the NodeManager to be made available to running containers
+	    -->
+	    <property>
+	        <name>yarn.nodemanager.resource.memory-mb</name>
+	        <value>8192</value>
+	    </property>
+
+	    <!--
+	    Maximum ratio by which virtual memory usage of tasks may exceed physical memory
+	    The virtual memory usage of each task may exceed its physical memory limit by this ratio. The total amount of virtual memory used by tasks on the NodeManager may exceed its physical memory usage by this ratio.
+	    Ratio between virtual memory to physical memory when setting memory limits for containers. Container allocations are expressed in terms of physical memory, and virtual memory usage is allowed to exceed this allocation by this ratio.
+	    -->
+	    <property>
+	        <name>yarn.nodemanager.vmem-pmem-ratio</name>
+	        <value>2.1</value>
+	    </property>
+
+	    <!--
+	    Comma-separated list of paths on the local filesystem where intermediate data is written.
+	    Multiple paths help spread disk i/o.
+	    List of directories to store localized files in. An application's localized file directory will be found in: ${yarn.nodemanager.local-dirs}/usercache/${user}/appcache/application_${appid}. Individual containers' work directories, called container_${contid}, will be subdirectories of this.
+	    -->
+	    <property>
+	        <name>yarn.nodemanager.local-dirs</name>
+	        <value>${hadoop.tmp.dir}/nm-local-dir</value>
+	    </property>
+
+	    <!--
+	    Comma-separated list of paths on the local filesystem where logs are written.
+	    Multiple paths help spread disk i/o.
+	    Where to store container logs. An application's localized log directory will be found in ${yarn.nodemanager.log-dirs}/application_${appid}. Individual containers' log directories will be below this, in directories named container_{$contid}. Each container directory will contain the files stderr, stdin, and syslog generated by that container.
+	    -->
+	    <property>
+	        <name>yarn.nodemanager.log-dirs</name>
+	        <value>${yarn.log.dir}/userlogs</value>
+	    </property>
+
+	    <!--
+	    10800
+	    Default time (in seconds) to retain log files on the NodeManager Only applicable if log-aggregation is disabled.
+	    Time in seconds to retain user logs. Only applicable if log aggregation is disabled
+	    -->
+	    <property>
+	        <name>yarn.nodemanager.log.retain-seconds</name>
+	        <value>10800</value>
+	    </property>
+
+	    <!--
+	    /logs
+	    HDFS directory where the application logs are moved on application completion. Need to set appropriate permissions. Only applicable if log-aggregation is enabled.
+	    Where to aggregate logs to.
+	    -->
+	    <property>
+	        <name>yarn.nodemanager.remote-app-log-dir</name>
+	        <value>/tmp/logs</value>
+	    </property>
+
+	    <!--
+	    logs
+	    Suffix appended to the remote log dir. Logs will be aggregated to yarn.nodemanager.remote-app-log-dir/user/thisParam Only applicable if log-aggregation is enabled.
+	    The remote log dir will be created at {yarn.nodemanager.remote-app-log-dir}/${user}/{thisParam}
+	    -->
+	    <property>
+	        <name>yarn.nodemanager.remote-app-log-dir-suffix</name>
+	        <value>logs</value>
+	    </property>
+
+	    <!--
+	    mapreduce_shuffle
+	    Shuffle service that needs to be set for Map Reduce applications.
+	    the valid service name should only contain a-zA-Z0-9_ and can not start with numbers
+	    -->
+	    <property>
+	        <name>yarn.nodemanager.aux-services</name>
+	        <value></value>
+	    </property>
+
+		<!-- ###################################################
+		     Configurations for History Server:
+			 ################################################### -->
+
+		<!-- -1	How long to keep aggregation logs before deleting them. -1 disables. Be careful, set this too small and you will spam the name node. -->
+		<property>
+			<name>yarn.log-aggregation.retain-seconds</name>
+			<value></value>
+		</property>
+
+		<!-- -1	Time between checks for aggregated log retention. If set to 0 or a negative value then the value is computed as one-tenth of the aggregated log retention time. Be careful, set this too small and you will spam the name node. -->
+		<property>
+			<name>yarn.log-aggregation.retain-check-interval-seconds</name>
+			<value></value>
+		</property>
+</configuration>

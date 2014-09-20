@@ -1,4 +1,5 @@
 .DS_Store
 .git
 .vagrant
-sync/*
+sync/*.rpm
+sync/*.gz

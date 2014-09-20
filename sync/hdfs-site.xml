@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+	<!-- Path on the local filesystem where
+		 the NameNode stores the namespace
+		 and transactions logs persistently. -->
+	<property>
+		<name>dfs.namenode.name.dir</name>
+		<value>/home/hadoop/data</value>
+	</property>
+
+	<!-- List of permitted DataNodes. -->
+	<property>
+		<name>dfs.namenode.hosts</name>
+		<value>datanode1,datanode2,datanode3,datanode4</value>
+	</property>
+
+	<!-- HDFS blocksize of 256MB for large file-systems. -->
+	<property>
+		<name>dfs.blocksize</name>
+		<value>268435456</value>
+	</property>
+
+	<!-- More NameNode server threads to handle RPCs from large number of DataNodes. -->
+    <property>
+        <name>dfs.namenode.handler.count</name>
+        <value>100</value>
+    </property>
+</configuration>

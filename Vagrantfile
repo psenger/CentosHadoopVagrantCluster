@@ -11,6 +11,7 @@ boxes = [
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.provision "shell", inline: "/vagrant/sync/pull.sh"
     boxes.each do |opts|
         config.vm.define opts[:name] do |config|
           config.vm.box = "CentOS-7.0-1406-x86_64"

@@ -150,7 +150,7 @@ file { '/etc/hadoop/core-site.xml':
   group    => 'hadoop',
   owner    => 'hadoop',
   mode     => '755',
-  target   => '/vagrant/sync/core-site.xml',
+  target   => '/vagrant/sync/etc/hadoop/core-site.xml',
   require  => [ FILE['/etc/hadoop'] ],
 }
 
@@ -159,7 +159,7 @@ file { '/etc/hadoop/hdfs-site.xml':
   group    => 'hadoop',
   owner    => 'hadoop',
   mode     => '755',
-  target   => '/vagrant/sync/hdfs-site.xml',
+  target   => '/vagrant/sync/etc/hadoop/hdfs-site.xml',
   require  => [ FILE['/etc/hadoop'] ],
 }
 
@@ -168,7 +168,7 @@ file { '/etc/hadoop/mapred-site.xml':
   group    => 'hadoop',
   owner    => 'hadoop',
   mode     => '755',
-  target   => '/vagrant/sync/mapred-site.xml',
+  target   => '/vagrant/sync/etc/hadoop/mapred-site.xml',
   require  => [ FILE['/etc/hadoop'] ],
 }
 
@@ -177,7 +177,16 @@ file { '/etc/hadoop/yarn-site.xml':
   group    => 'hadoop',
   owner    => 'hadoop',
   mode     => '755',
-  target   => '/vagrant/sync/yarn-site.xml',
+  target   => '/vagrant/sync/etc/hadoop/yarn-site.xml',
+  require  => [ FILE['/etc/hadoop'] ],
+}
+
+file { '/etc/hadoop/slaves':
+  ensure   => 'link',
+  group    => 'hadoop',
+  owner    => 'hadoop',
+  mode     => '755',
+  target   => '/vagrant/sync/etc/hadoop/slaves',
   require  => [ FILE['/etc/hadoop'] ],
 }
 
@@ -194,43 +203,44 @@ file { '/usr/local/hadoop/logs':
   group    => 'hadoop',
   mode     => '777',
   owner    => 'hadoop',
-  target   => '/var/log/hadoop/log',
+  target   => '/var/log/hadoop/',
   require  => [ File['/var/log/hadoop'], Exec['unpack_hadoop'], User['hadoop'] ],
 }
 
+## Shell Scripts ##
 file { '/etc/profile.d/hadoop-2.5.0-env.sh':
-	source  => '/usr/local/hadoop-2.5.0/etc/hadoop/hadoop-env.sh',
+	source  => '/usr/local/hadoop/etc/hadoop/hadoop-env.sh',
 	mode    => 755,
 	owner   => root,
 	group   => root,
-	require => [ Exec['unpack_hadoop'] ],
+	require => [ File['/usr/local/hadoop'] ],
 }
 
 file { '/etc/profile.d/httpfs-2.5.0-env.sh':
-	source  => '/usr/local/hadoop-2.5.0/etc/hadoop/httpfs-env.sh',
+	source  => '/usr/local/hadoop/etc/hadoop/httpfs-env.sh',
 	mode    => 755,
 	owner   => root,
 	group   => root,
-	require => [ Exec['unpack_hadoop'] ],
+	require => [ File['/usr/local/hadoop'] ],
 }
 
 file { '/etc/profile.d/mapred-2.5.0-env.sh':
-	source  => '/usr/local/hadoop-2.5.0/etc/hadoop/mapred-env.sh',
+	source  => '/usr/local/hadoop/etc/hadoop/mapred-env.sh',
 	mode    => 755,
 	owner   => root,
 	group   => root,
-	require => [ Exec['unpack_hadoop'] ],
+	require => [ File['/usr/local/hadoop'] ],
 }
 
 file { '/etc/profile.d/yarn-2.5.0-env.sh':
-	source  => '/usr/local/hadoop-2.5.0/etc/hadoop/yarn-env.sh',
+	source  => '/usr/local/hadoop/etc/hadoop/yarn-env.sh',
 	mode    => 755,
 	owner   => root,
 	group   => root,
-	require => [ Exec['unpack_hadoop'] ],
+	require => [ File['/usr/local/hadoop'] ],
 }
 
-# add hosts to the /etc/host file
+## Add hosts to the /etc/host file ##
 host { 'datanode1':
   ensure  => 'present',
   ip      => '192.168.33.13',
@@ -262,4 +272,46 @@ host { 'namenode':
   target  => '/etc/hosts',
 }
 
+## Add hosts to the /.ssh/knwown_hosts file ##
+file{ '/home/hadoop/.ssh' :
+  ensure => directory,
+  group  => 'hadoop',
+  owner  => 'hadoop',
+  mode   => 0600,
+}
 
+file{ '/home/hadoop/.ssh/authorized_keys' :
+  ensure  => file,
+  group   => 'hadoop',
+  owner   => 'hadoop',
+  mode    => 0600,
+  source  => '/vagrant/sync/home/hadoop/.ssh/authorized_keys',
+  require => [ File[ '/home/hadoop/.ssh' ], User['hadoop'] ],
+}
+
+file{ '/home/hadoop/.ssh/id_rsa' :
+  ensure  => file,
+  group   => 'hadoop',
+  owner   => 'hadoop',
+  mode    => 0600,
+  source  => '/vagrant/sync/home/hadoop/.ssh/id_rsa',
+  require => [ File[ '/home/hadoop/.ssh' ], User['hadoop'] ],
+}
+
+file{ '/home/hadoop/.ssh/id_rsa.pub' :
+  ensure  => file,
+  group   => 'hadoop',
+  owner   => 'hadoop',
+  mode    => 0600,
+  source  => '/vagrant/sync/home/hadoop/.ssh/id_rsa.pub',
+  require => [ File[ '/home/hadoop/.ssh' ], User['hadoop'] ],
+}
+
+file{ '/home/hadoop/.ssh/known_hosts' :
+  ensure  => file,
+  group   => 'hadoop',
+  owner   => 'hadoop',
+  mode    => 0600,
+  source  => '/vagrant/sync/home/hadoop/.ssh/known_hosts',
+  require => [ File[ '/home/hadoop/.ssh' ], User['hadoop'] ],
+}

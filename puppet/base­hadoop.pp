@@ -180,6 +180,14 @@ file { '/etc/hadoop/slaves':
   target   => '/vagrant/sync/etc/hadoop/slaves',
   require  => [ FILE['/etc/hadoop'] ],
 }
+file { '/etc/hadoop/masters':
+  ensure   => 'link',
+  group    => 'hadoop',
+  owner    => 'hadoop',
+  mode     => '755',
+  target   => '/vagrant/sync/etc/hadoop/masters',
+  require  => [ FILE['/etc/hadoop'] ],
+}
 
 file { '/var/log/hadoop':
   ensure   => 'directory',

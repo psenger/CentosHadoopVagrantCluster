@@ -77,7 +77,7 @@
 	         in default ports for ResourceManager components. -->
 	    <property>
 	        <name>yarn.resourcemanager.hostname</name>
-	        <value>jobtrackernode</value>
+	        <value>namenode</value>
 	    </property>
 
 	    <!-- ResourceManager Scheduler class.

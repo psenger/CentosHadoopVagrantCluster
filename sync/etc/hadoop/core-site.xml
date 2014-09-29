@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+	https://github.com/simplegeo/hadoop/blob/master/example-confs/conf.secure/core-site.xml
+-->
 <configuration>
+
+	<property>
+		<name>local.namenode</name>
+		<value>namenode</value>
+	</property>
+
+	<property>
+		<name>local.jobtracker</name>
+		<value>secondarynamenode</value>
+	</property>
+
 	<property>
 		<name>fs.defaultFS</name>
-		<value>hdfs://namenode:9000</value>
+		<value>hdfs://${local.namenode}:9000</value>
 	</property>
+
+
 </configuration>

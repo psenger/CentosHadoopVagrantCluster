@@ -17,8 +17,6 @@ File {
 
 # package { [ 'git.x86_64' ]: ensure=>ensure, }
 
-$hadoop_home = '/usr/local/hadoop'
-
 package { 'java-1.7.0-openjdk-devel':
  	ensure => present,
 	source => '/vagrant/sync/java-1.7.0-openjdk-devel-1.7.0.51-2.4.5.5.el7.x86_64.rpm'
@@ -36,16 +34,6 @@ file { '/etc/profile.d/java-1.7.sh':
 file { '/etc/profile.d/hadoop-2.5.0.sh':
 	content => "export HADOOP_HOME=/usr/local/hadoop\nexport PATH=\$PATH:\$HADOOP_HOME/bin\nexport HADOOP_PREFIX=\$HADOOP_HOME\nexport HADOOP_YARN_HOME=\$HADOOP_HOME\n",
 }
-# exec { 'install_java_8' :
-# 	command => 'rpm --install /vagrant/sync/jdk-8u20-linux-x64.rpm',
-# 	creates => '/usr/java/jdk1.8.0_20',
-# }
-# file { '/etc/profile.d/java-1.8.0_20.sh':
-# 	content => "export JAVA_HOME=/usr/java/latest
-# export JRE_HOME=/usr/java/latest
-# export PATH=$JAVA_HOME/bin:$PATH
-# ",
-# }
 
 # unpack haoop
 exec { 'unpack_hadoop' :
@@ -71,7 +59,7 @@ group { 'hadoop':
 # crete the user hadoop
 user { 'hadoop':
   ensure           => 'present',
-  managehome 	   => true,
+  managehome 	     => true,
   gid              => '1001',
   home             => '/home/hadoop',
   password         => '$6$nD4vMHXv$xlQYJuXUwZ.U0mD/6XmcuC6JmfQAj7hN759SuSMue2I6fePPXbzQChJDhRA3XAyO3YNS9SL50ul0ru/G.PWGE.',
@@ -79,7 +67,8 @@ user { 'hadoop':
   password_min_age => '0',
   shell            => '/bin/bash',
   uid              => '1001',
-  require 		   => [ Group['hadoop'] ],
+  purge_ssh_keys   => true,
+  require 		     => [ Group['hadoop'] ],
 }
 
 # create the home directory for hadoop
@@ -90,15 +79,6 @@ file {'/home/hadoop':
 	mode    => '755',
 	require => [ Group['hadoop'], User['hadoop'] ],
 }
-
-ssh_authorized_key { 'hadoop':
-  ensure => present,
-  key    => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQD8OI1UlMiQrI1YSzZwb3sOJ062UbkIU5AvcEgeaYy88INr60sjPdPdCpF9f8Vr7gIXyFJq1oJx71nHj+fbtt9J2G0a5qW/OLuUthlwTZgaYaFmiMQyTsW/2IWXmA6tNHV6H3NNaqQfuQnWuFCJG4tjP0IhRIdtN/Uo2EdbAyeEf6F5+E21GgKX8m4sncMNDRgeGtMtrj/VCYjsRA6C2dksg/bdZkIuJRcVb0gu7Dx0YOVhXmOBQKGnHnh2W16OpLmMLJY4KDCLAxG9Xmc7/l3F4qaQbjf+b0+yFqr2FfbB1Htf7XyHdT2H0unFSHC1qPyJ1gpMQOKq8Ns26+PM8Gcz',
-  type   => 'ssh-rsa',
-  name   => 'hadoop@namenode.vagrant',
-  user   => 'hadoop',
-}
-
 
 # create the yarn group
 group { 'yarn':
@@ -136,7 +116,8 @@ file { '/etc/hadoop':
 	mode    => '755',
 	require => [ Exec['unpack_hadoop'], User['hadoop'] ],
 }
-# create the data directory
+
+# Create the data directory
 file { '/home/hadoop/data':
 	ensure  => 'directory',
   	group   => 'hadoop',
@@ -145,6 +126,7 @@ file { '/home/hadoop/data':
 	require => [ File['/etc/hadoop'] ],
  }
 
+# Configuration Files
 file { '/etc/hadoop/configuration.xsl':
   ensure   => 'file',
   group    => 'hadoop',
@@ -270,52 +252,47 @@ augeas { 'etc_hosts':
     "set /files/etc/hosts/7/ipaddr 192.168.33.14",
     "set /files/etc/hosts/7/canonical datanode2",
     "set /files/etc/hosts/8/ipaddr 192.168.33.15",
-    "set /files/etc/hosts/8/canonical datanode2",
+    "set /files/etc/hosts/8/canonical datanode3",
     "set /files/etc/hosts/9/ipaddr 192.168.33.16",
-    "set /files/etc/hosts/9/canonical datanode2",
+    "set /files/etc/hosts/9/canonical datanode4",
   ],
 }
 
 ## Add hosts to the /.ssh/knwown_hosts file ##
 file{ '/home/hadoop/.ssh' :
-  ensure => directory,
-  group  => 'hadoop',
-  owner  => 'hadoop',
-  mode   => 0600,
+ ensure  => directory,
+ group   => 'hadoop',
+ owner   => 'hadoop',
+ mode    => 0600,
+ require => [ User['hadoop'] ],
 }
-
-#file{ '/home/hadoop/.ssh/authorized_keys' :
-#  ensure  => file,
-#  group   => 'hadoop',
-#  owner   => 'hadoop',
-#  mode    => 0600,
-#  source  => '/vagrant/sync/home/hadoop/.ssh/authorized_keys',
-#  require => [ File[ '/home/hadoop/.ssh' ], User['hadoop'] ],
-#}
-#
-#file{ '/home/hadoop/.ssh/id_rsa' :
-#  ensure  => file,
-#  group   => 'hadoop',
-#  owner   => 'hadoop',
-#  mode    => 0600,
-#  source  => '/vagrant/sync/home/hadoop/.ssh/id_rsa',
-#  require => [ File[ '/home/hadoop/.ssh' ], User['hadoop'] ],
-#}
-#
-#file{ '/home/hadoop/.ssh/id_rsa.pub' :
-#  ensure  => file,
-#  group   => 'hadoop',
-#  owner   => 'hadoop',
-#  mode    => 0600,
-#  source  => '/vagrant/sync/home/hadoop/.ssh/id_rsa.pub',
-#  require => [ File[ '/home/hadoop/.ssh' ], User['hadoop'] ],
-#}
-#
-#file{ '/home/hadoop/.ssh/known_hosts' :
-#  ensure  => file,
-#  group   => 'hadoop',
-#  owner   => 'hadoop',
-#  mode    => 0600,
-#  source  => '/vagrant/sync/home/hadoop/.ssh/known_hosts',
-#  require => [ File[ '/home/hadoop/.ssh' ], User['hadoop'] ],
-#}
+file{ '/home/hadoop/.ssh/id_rsa' :
+ ensure  => file,
+ group   => 'hadoop',
+ owner   => 'hadoop',
+ mode    => 0600,
+ source  => '/vagrant/sync/home/hadoop/.ssh/id_rsa',
+ require => [ File[ '/home/hadoop/.ssh' ], User['hadoop'] ],
+}
+file{ '/home/hadoop/.ssh/id_rsa.pub' :
+ ensure  => file,
+ group   => 'hadoop',
+ owner   => 'hadoop',
+ mode    => 0600,
+ source  => '/vagrant/sync/home/hadoop/.ssh/id_rsa.pub',
+ require => [ File[ '/home/hadoop/.ssh' ], User['hadoop'] ],
+}
+file{ '/home/hadoop/.ssh/known_hosts' :
+ ensure  => file,
+ group   => 'hadoop',
+ owner   => 'hadoop',
+ mode    => 0600,
+ source  => '/vagrant/sync/home/hadoop/.ssh/known_hosts',
+ require => [ File[ '/home/hadoop/.ssh' ], User['hadoop'] ],
+}
+ssh_authorized_key { 'hadoop@namenode':
+  user    => 'hadoop',
+  type    => 'ssh-rsa',
+  key     => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCjGy09h7c+HZ1HF3x4w6UuWHDheoP16CVZ7wbHQit9rQ3yLI3IgnFi+qEPLZ+vKBfTC/EtQi/gHW//3HGwjzvCvgUGnXotYT6D+UTJsbQ7I1oRmuQOV6B/S1yyTA4OQgrvEWZDc8A36feSH+O+qVKA7ADRM6/XDPJypJnM9ICzVtzdN3vAQojG8VPg2/+Afp9WbOsuB4xOJxQ9kViEIPnsLn0hsGzCkBbVUC7LXZYVqtteVqUCL9XsLpe0q2jhyYQQQpRW0l4EDnwrQ+79VUnU/ANzNBpJBL5j+L2lVaXQYw82qpqSf4rEG4fyzxeiXfBYwocgHxcMHCwJHkVLqTWl',
+  require => [ File[ '/home/hadoop/.ssh' ], User['hadoop'] ],
+}
